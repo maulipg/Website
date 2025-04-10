@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAULI HOSTELRECIPE HOUSE - Rooms</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #f97316;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo h1 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            padding-top: 100px;
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/api/placeholder/1200/400') center/cover no-repeat;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: slideInFromTop 1s ease-out;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #e45c00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(249, 115, 22, 0.4);
+        }
+
+        .rooms-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            font-size: 2.2rem;
+            position: relative;
+            animation: fadeIn 1s ease;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .room-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            animation: slideInFromBottom 0.8s ease-out;
+        }
+
+        .room-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .room-slider {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .room-images {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .room-image {
+            width: 33.33%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+        }
+
+        .slider-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background-color: var(--accent);
+        }
+
+        .room-details {
+            padding: 25px;
+        }
+
+        .room-details h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        .room-feature {
+            background-color: var(--light-gray);
+            color: var(--dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .room-price {
+            font-size: 1.6rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        .gallery-section {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 200px;
+            animation: fadeIn 1s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: white;
+            font-weight: 600;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes slideInFromTop {
+            0% { transform: translateY(-100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInFromBottom {
+            0% { transform: translateY(100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            nav.active {
+                max-height: 300px;
+            }
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            nav ul li {
+                margin: 0 0 15px 0;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .room-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>MAULI HOSTELRECIPE HOUSE</h1>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="rooms.html">Rooms</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="booking.html">Booking</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Our Comfortable Rooms</h2>
+                <a href="#rooms" class="btn">Explore Rooms</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="rooms-section" id="rooms">
+        <div class="container">
+            <h2 class="section-title">Room Types</h2>
+            <div class="room-grid">
+                <div class="room-card">
+                    <div class="room-slider">
+                        <div class="room-images">
+                            <img src="/api/placeholder/600/400" class="room-image" alt="Single Room 1">
+                            <img src="/api/placeholder/600/400" class="room-image" alt="Single Room 2">
+                            <img src="/api/placeholder/600/400" class="room-image" alt="Single Room 3">
+                        </div>
+                        <div class="slider-controls">
+                            <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="room-details">
+                        <h3>Premium Single Room</h3>
+                        <p>A spacious private room designed for comfort and productivity.</p>
+                        <div class="room-features">
+                            <span class="room-feature"><i class="fas fa-bed"></i> Queen Bed</span>
+                            <span class="room-feature"><i class="fas fa-desktop"></i> Work Desk</span>
+                            <span class="room-feature"><i class="fas fa-wifi"></i> High-Speed Wi-Fi</span>
+                            <span class="room-feature"><i class="fas fa-tv"></i> Smart TV</span>
+                        </div>
+                        <div class="room-price">₹10,000 - ₹12,000 / month</div>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-slider">
+                        <div class="room-images">
+                            <img src="/api/placeholder/600/400" class="room-image" alt="Double Room 1">
+                           했고
+                            <img src="/api/placeholder/600/400" class="room-image" alt="Double Room 2">
+                            <img src="/api/placeholder/600/400" class="room-image" alt="Double Room 3">
+                        </div>
+                        <div class="slider-controls">
+                            <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="room-details">
+                        <h3>Shared Double Room</h3>
+                        <p>Perfect for friends or those who enjoy company, with ample space.</p>
+                        <div class="room-features">
+                            <span class="room-feature"><i class="fas fa-bed"></i> 2 Single Beds</span>
+                            <span class="room-feature"><i class="fas fa-desktop"></i> 2 Study Tables</span>
+                            <span class="room-feature"><i class="fas fa-cabinet-filing"></i> Wardrobe</span>
+                            <span class="room-feature"><i class="fas fa-fan"></i> Ceiling Fan</span>
+                        </div>
+                        <div class="room-price">₹6,000 - ₹8,000 / month</div>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+
+                <div class="room-card">
+                    <div class="room-slider">
+                        <div class="room-images">
+                            <img src="/api/placeholder/600/400" class="room-image" alt="Dorm Room 1">
+                            <img src="/api/placeholder/600/400" class="room-image" alt="Dorm Room 2">
+                            <img src="/api/placeholder/600/400" class="room-image" alt="Dorm Room 3">
+                        </div>
+                        <div class="slider-controls">
+                            <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="room-details">
+                        <h3>Dormitory Room</h3>
+                        <p>Affordable option for community living with shared facilities.</p>
+                        <div class="room-features">
+                            <span class="room-feature"><i class="fas fa-bed"></i> 4-6 Bunk Beds</Ian</span>
+                            <span class="room-feature"><i class="fas fa-lock"></i> Personal Lockers</span>
+                            <span class="room-feature"><i class="fas fa-plug"></i> Power Sockets</span>
+                            <span class="room-feature"><i class="fas fa-fan"></i> Ventilation</span>
+                        </div>
+                        <div class="room-price">₹4,000 - ₹5,000 / month</div>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Room Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/300" alt="Room Interior">
+                    <div class="gallery-overlay"><span>Cozy Corner</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/300" alt="Study Area">
+                    <div class="gallery-overlay"><span>Study Space</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/300" alt="Common Area">
+                    <div class="gallery-overlay"><span>Lounge Area</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/400/300" alt="Bathroom">
+                    <div class="gallery-overlay"><span>Modern Bathroom</span></
+
+div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MAULI HOSTELRECIPE HOUSE</h3>
+                    <p>Your home away from home with modern amenities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="rooms.html">Rooms</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="booking.html">Booking</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 MAULI HOSTELRECIPE HOUSE. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 0);
+        });
+
+        // Mobile navigation toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('nav');
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            const icon = navToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Room slider functionality
+        document.querySelectorAll('.room-card').forEach(card => {
+            const slider = card.querySelector('.room-images');
+            const prevBtn = card.querySelector('.slider-btn.prev');
+            const nextBtn = card.querySelector('.slider-btn.next');
+            let currentIndex = 0;
+            const totalImages = 3;
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                slider.style.transform = `translateX(-${currentIndex * 33.33}%)`;
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                slider.style.transform = `translateX(-${currentIndex * 33.33}%)`;
+            });
+        });
+    </script>
+</body>
+</html>
