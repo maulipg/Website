@@ -457,49 +457,50 @@
                 </div>
 
                 <!-- Booking Form -->
-                <div class="booking-form">
-                    <form id="bookingForm" method="POST" action="https://docs.google.com/forms/u/0/d/e/[FORM_ID]/formResponse">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="entry.[NAME_ENTRY_ID]" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="entry.[EMAIL_ENTRY_ID]" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="entry.[PHONE_ENTRY_ID]" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="room">Preferred Room Type</label>
-                            <select id="room" name="entry.[ROOM_ENTRY_ID]" required>
-                                <option value="">Select Room</option>
-                                <option value="Premium Single Room">Premium Single Room</option>
-                                <option value="Shared Double Room">Shared Double Room</option>
-                                <option value="Dormitory Room">Dormitory Room</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="checkin">Check-in Date</label>
-                            <input type="date" id="checkin" name="entry.[CHECKIN_ENTRY_ID]" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="duration">Duration of Stay (Months)</label>
-                            <input type="number" id="duration" name="entry.[DURATION_ENTRY_ID]" min="1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Additional Message</label>
-                            <textarea id="message" name="entry.[MESSAGE_ENTRY_ID]" rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn">Submit Inquiry</button>
-                    </form>
-                    <div class="confirmation-message" id="confirmation">
-                        Thank you for your inquiry! We'll contact you soon to confirm your booking.
+                <form name="bookingForm" method="POST" data-netlify="true" action="/thank-you.html">
+                    <div class="form-group">
+                      <label for="name">Full Name</label>
+                      <input type="text" id="name" name="name" required>
                     </div>
-                </div>
-            </div>
-        </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Phone Number</label>
+                      <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="room">Preferred Room Type</label>
+                      <select id="room" name="room" required>
+                        <option value="">Select Room</option>
+                        <option value="Premium Single Room">Premium Single Room</option>
+                        <option value="Shared Double Room">Shared Double Room</option>
+                        <option value="Dormitory Room">Dormitory Room</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="checkin">Check-in Date</label>
+                      <input type="date" id="checkin" name="checkin" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="duration">Duration of Stay (Months)</label>
+                      <input type="number" id="duration" name="duration" min="1" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="message">Additional Message</label>
+                      <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+                  
+                    <!-- Netlify Honeypot (Spam protection) -->
+                    <input type="hidden" name="form-name" value="bookingForm">
+                    <div hidden>
+                      <label>Don’t fill this out if you're human: <input name="bot-field"></label>
+                    </div>
+                  
+                    <button type="submit" class="btn">Submit Inquiry</button>
+                  </form>
+                  
     </section>
 
     <!-- Footer -->
