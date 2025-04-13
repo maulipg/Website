@@ -457,7 +457,7 @@
                 </div>
 
                 <!-- Booking Form -->
-                <form name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
+                <form name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="showThankYou(event)">
                     <input type="hidden" name="form-name" value="booking">
                     <p hidden>
                       <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
@@ -467,10 +467,12 @@
                       <label for="fullName">Full Name</label>
                       <input type="text" id="fullName" name="fullName" required>
                     </div>
+                  
                     <div class="form-group">
                       <label for="email">Email Address</label>
                       <input type="email" id="email" name="email" required>
                     </div>
+                  
                     <div class="form-group">
                       <label for="roomType">Room Type</label>
                       <select id="roomType" name="roomType" required>
@@ -480,10 +482,12 @@
                         <option value="triple">Triple Room</option>
                       </select>
                     </div>
+                  
                     <div class="form-group">
                       <label for="checkin">Check-in Date</label>
                       <input type="date" id="checkin" name="checkin" required>
                     </div>
+                  
                     <div class="form-group">
                       <label for="notes">Additional Notes</label>
                       <textarea id="notes" name="notes"></textarea>
@@ -492,7 +496,10 @@
                     <button type="submit" class="btn">Book Now</button>
                   </form>
                   
-                  
+                  <!-- Thank You Message -->
+                  <div id="thank-you-message" style="display: none; padding: 1em; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; margin-top: 1em;">
+                    Thank you for your booking! We will contact you soon.
+                  </div>
     </section>
 
     <!-- Footer -->
@@ -574,6 +581,23 @@
                 form.reportValidity();
             }
         });
+
+        function showThankYou(event) {
+    event.preventDefault(); // Stop default submission to allow async submit
+    const form = event.target;
+
+    // Submit the form data using Fetch API
+    const formData = new FormData(form);
+    fetch("/", {
+      method: "POST",
+      body: formData
+    })
+    .then(() => {
+      form.style.display = "none"; // Hide the form
+      document.getElementById("thank-you-message").style.display = "block"; // Show thank you message
+    })
+    .catch((error) => alert("Something went wrong. Please try again."));
+  }
     </script>
 </body>
 </html>
