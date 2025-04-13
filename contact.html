@@ -486,26 +486,33 @@
 
                 <!-- Contact Form -->
                 <div class="contact-form">
-                    <form id="contactForm" onsubmit="return false;">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required>
-                            <label for="name">Full Name</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required>
-                            <label for="email">Email</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="phone" name="phone" required>
-                            <label for="phone">Phone Number</label>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                            <label for="message">Your Message</label>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
+                    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                      <input type="hidden" name="form-name" value="contact" />
+                      <p hidden>
+                        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                      </p>
+                  
+                      <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Full Name</label>
+                      </div>
+                      <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email</label>
+                      </div>
+                      <div class="form-group">
+                        <input type="tel" id="phone" name="phone" required>
+                        <label for="phone">Phone Number</label>
+                      </div>
+                      <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Your Message</label>
+                      </div>
+                  
+                      <button type="submit" class="btn">Send Message</button>
                     </form>
-                </div>
+                  </div>
+                  
             </div>
         </div>
     </section>
