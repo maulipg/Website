@@ -281,20 +281,48 @@
             text-align: center;
         }
 
-        .map-container {
-            max-width: 1000px;
+        .maps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
             margin: 0 auto;
-            height: 400px;
+        }
+
+        .location-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .map-wrapper {
+            background: white;
+            padding: 15px;
             border-radius: 10px;
-            overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             animation: fadeInUp 1s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-grow: 1;
         }
 
         .map-container iframe {
             width: 100%;
             height: 100%;
             border: none;
+        }
+
+        .location-address {
+            margin-top: 15px;
+            color: var(--gray);
+            font-size: 0.9rem;
         }
 
         footer {
@@ -384,6 +412,10 @@
 
         @media (max-width: 992px) {
             .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .maps-container {
                 grid-template-columns: 1fr;
             }
         }
@@ -489,7 +521,7 @@
                     <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                       <input type="hidden" name="form-name" value="contact" />
                       <p hidden>
-                        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
                       </p>
                   
                       <div class="form-group">
@@ -517,22 +549,52 @@
         </div>
     </section>
 
-    <!-- Map Section -->
+    <!-- Map Section with Three Locations -->
     <section class="map-section">
         <div class="container">
             <h2 class="section-title">Find Us</h2>
-            <div class="map-container">
-                <!-- Placeholder map; replace with actual Google Maps embed -->
-                <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.389741948358!2d73.8454031!3d18.5025125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c100777e2033%3A0x5e7d6890cbaafa71!2sMauli%20Hostel%20and%20Recipe%20House!5e0!3m2!1sen!2sus!4v1630000000000" 
-                width="600" 
-                height="450" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
-              
+            <div class="maps-container">
+                <!-- Kothrud Location -->
+                <div class="map-wrapper">
+                    <h3 class="location-title">Kothrud Branch</h3>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15135.636247544698!2d73.81022323022461!3d18.506292300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf8c96c273a3%3A0x8f46d11d784b1f8d!2sMauli%20Hostelrecipe%20House%20-%20Kothrud!5e0!3m2!1sen!2sin!4v1649672971272!5m2!1sen!2sin" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <p class="location-address">42 Kothrud Road, Near MIT College, Kothrud, Pune - 411038</p>
+                </div>
+                
+                <!-- Karvenagar Location -->
+                <div class="map-wrapper">
+                    <h3 class="location-title">Karvenagar Branch</h3>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15133.412243508155!2d73.79881023022461!3d18.530292300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf7b44bf413b%3A0xa4da874d9d8edb87!2sMauli%20Hostelrecipe%20House%20-%20Karvenagar!5e0!3m2!1sen!2sin!4v1649672971272!5m2!1sen!2sin" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <p class="location-address">78 Karvenagar Main Road, Near Cummins College, Karvenagar, Pune - 411052</p>
+                </div>
+                
+                <!-- Dandekar Pull Location -->
+                <div class="map-wrapper">
+                    <h3 class="location-title">Dandekar Pull Branch</h3>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15135.012243508155!2d73.8252023022461!3d18.490292300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c07f4a55be8f%3A0x33ab5af1b5598b25!2sMauli%20Hostelrecipe%20House%20-%20Dandekar%20Pull!5e0!3m2!1sen!2sin!4v1649672971272!5m2!1sen!2sin" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <p class="location-address">156 Dandekar Bridge Road, Near Sinhagad College, Dandekar Pull, Pune - 411043</p>
+                </div>
             </div>
         </div>
     </section>
@@ -563,6 +625,14 @@
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
+                <div class="footer-section">
+                    <h3>Our Locations</h3>
+                    <ul class="footer-links">
+                        <li><a href="#kothrud">Kothrud</a></li>
+                        <li><a href="#karvenagar">Karvenagar</a></li>
+                        <li><a href="#dandekar">Dandekar Pull</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">
                 <p>© 2025 MAULI HOSTELRECIPE HOUSE. All Rights Reserved.</p>
@@ -589,20 +659,14 @@
         });
 
         // Form submission simulation
-        const form = document.getElementById('contactForm');
+        const form = document.querySelector('form[name="contact"]');
         form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (form.checkValidity()) {
+            // This will be handled by Netlify for real forms
+            // This is just for preview/testing
+            if (!form.getAttribute('data-netlify-status')) {
+                e.preventDefault();
                 alert('Thank you for your message! We will get back to you soon.');
                 form.reset();
-                console.log('Form Data:', {
-                    name: form.name.value,
-                    email: form.email.value,
-                    phone: form.phone.value,
-                    message: form.message.value
-                });
-            } else {
-                form.reportValidity();
             }
         });
     </script>
