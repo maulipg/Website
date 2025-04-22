@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAULI HOSTELRECIPE HOUSE - Contact Us</title>
+    <title>MAULI PG RECIPE HOUSE - Contact Us</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -449,6 +449,34 @@
                 font-size: 2rem;
             }
         }
+
+        .whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .whatsapp-btn:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+  }
+  
+  .whatsapp-icon {
+    width: 35px;
+    height: 35px;
+  }
     </style>
 </head>
 <body>
@@ -457,7 +485,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1>MAULI HOSTELRECIPE HOUSE</h1>
+                    <h1>MAULI PG RECIPE HOUSE</h1>
                 </div>
                 <button class="nav-toggle" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
@@ -504,7 +532,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h3>Email</h3>
-                            <p>info@maulihostel.com</p>
+                            <p>mauli.pg.contact@gmail.com</p>
                         </div>
                     </div>
                     <div class="info-item">
@@ -516,34 +544,35 @@
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                      <input type="hidden" name="form-name" value="contact" />
-                      <p hidden>
-                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-                      </p>
-                  
-                      <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Full Name</label>
-                      </div>
-                      <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">Email</label>
-                      </div>
-                      <div class="form-group">
-                        <input type="tel" id="phone" name="phone" required>
-                        <label for="phone">Phone Number</label>
-                      </div>
-                      <div class="form-group">
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                        <label for="message">Your Message</label>
-                      </div>
-                  
-                      <button type="submit" class="btn">Send Message</button>
-                    </form>
-                  </div>
+             <!-- Contact Form -->
+<div class="contact-form">
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="showThankYou(event)">
+      <input type="hidden" name="form-name" value="contact" />
+      <p hidden>
+        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+      </p>
+      
+      <div class="form-group">
+        <input type="text" id="name" name="name" required>
+        <label for="name">Full Name</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" required>
+        <label for="email">Email</label>
+      </div>
+      <div class="form-group">
+        <input type="tel" id="phone" name="phone" required>
+        <label for="phone">Phone Number</label>
+      </div>
+      <div class="form-group">
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <label for="message">Your Message</label>
+      </div>
+      
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+</div>
+
                   
             </div>
         </div>
@@ -559,7 +588,7 @@
                     <h3 class="location-title">Kothrud Branch</h3>
                     <div class="map-container">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15135.636247544698!2d73.81022323022461!3d18.506292300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf8c96c273a3%3A0x8f46d11d784b1f8d!2sMauli%20Hostelrecipe%20House%20-%20Kothrud!5e0!3m2!1sen!2sin!4v1649672971272!5m2!1sen!2sin" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15135.636247544698!2d73.81022323022461!3d18.506292300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf8c96c273a3%3A0x8f46d11d784b1f8d!2sMauli%20PGrecipe%20House%20-%20Kothrud!5e0!3m2!1sen!2sin!4v1649672971272!5m2!1sen!2sin" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
@@ -573,7 +602,7 @@
                     <h3 class="location-title">Karvenagar Branch</h3>
                     <div class="map-container">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15133.412243508155!2d73.79881023022461!3d18.530292300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf7b44bf413b%3A0xa4da874d9d8edb87!2sMauli%20Hostelrecipe%20House%20-%20Karvenagar!5e0!3m2!1sen!2sin!4v1649672971272!5m2!1sen!2sin" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15133.412243508155!2d73.79881023022461!3d18.530292300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf7b44bf413b%3A0xa4da874d9d8edb87!2sMauli%20PGrecipe%20House%20-%20Karvenagar!5e0!3m2!1sen!2sin!4v1649672971272!5m2!1sen!2sin" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
@@ -587,7 +616,7 @@
                     <h3 class="location-title">Dandekar Pull Branch</h3>
                     <div class="map-container">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15135.012243508155!2d73.8252023022461!3d18.490292300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c07f4a55be8f%3A0x33ab5af1b5598b25!2sMauli%20Hostelrecipe%20House%20-%20Dandekar%20Pull!5e0!3m2!1sen!2sin!4v1649672971272!5m2!1sen!2sin" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15135.012243508155!2d73.8252023022461!3d18.490292300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c07f4a55be8f%3A0x33ab5af1b5598b25!2sMauli%20PGrecipe%20House%20-%20Dandekar%20Pull!5e0!3m2!1sen!2sin!4v1649672971272!5m2!1sen!2sin" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
@@ -604,7 +633,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>MAULI HOSTELRECIPE HOUSE</h3>
+                    <h3>MAULI PG RECIPE HOUSE</h3>
                     <p>Your home away from home with modern amenities.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -635,10 +664,17 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 MAULI HOSTELRECIPE HOUSE. All Rights Reserved.</p>
+                <p>© 2025 MAULI PG RECIPE HOUSE. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <a href="https://api.whatsapp.com/send?phone=917720038887&text=Hi%20MauliPG%20team" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <!-- WhatsApp SVG icon -->
+          <path fill="white" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+      </a>
 
     <!-- JavaScript -->
     <script>
@@ -659,16 +695,29 @@
         });
 
         // Form submission simulation
-        const form = document.querySelector('form[name="contact"]');
-        form.addEventListener('submit', (e) => {
-            // This will be handled by Netlify for real forms
-            // This is just for preview/testing
-            if (!form.getAttribute('data-netlify-status')) {
-                e.preventDefault();
-                alert('Thank you for your message! We will get back to you soon.');
-                form.reset();
-            }
-        });
+        function showThankYou(event) {
+    event.preventDefault(); // Prevent default form submission
+    
+    // Get the form element
+    const form = event.target;
+    
+    // Submit the form data to Netlify
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+    .then(() => {
+      // Show thank you message
+      alert("Thank you for your submission!");
+      
+      // Optional: Reset the form
+      form.reset();
+    })
+    .catch(error => {
+      alert("Oops! There was a problem submitting your form: " + error);
+    });
+  }
     </script>
 </body>
 </html>
