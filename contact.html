@@ -478,114 +478,122 @@
     height: 35px;
   }
 
-  /* Responsive Typography */
-html {
-    /* Base font size */
-    font-size: 16px;
+  
+/* Base font sizes */
+:root {
+    --base-font-size: 16px;
+    --scale-ratio: 0.15;  /* Scaling ratio for responsive text */
 }
 
-/* Fluid typography for headings and body text */
-h1, .logo h1 {
-    font-size: clamp(1.2rem, 2vw + 1rem, 1.5rem);
+body {
+    font-size: var(--base-font-size);
+    /* Other existing body styles remain the same */
 }
 
-h2, .section-title {
-    font-size: clamp(1.5rem, 3vw + 1rem, 2.2rem);
+/* Responsive text scaling */
+@media (max-width: 1200px) {
+    :root {
+        --base-font-size: 15px;
+    }
 }
 
-h3, .location-title {
-    font-size: clamp(1.1rem, 1.5vw + 0.5rem, 1.5rem);
+@media (max-width: 992px) {
+    :root {
+        --base-font-size: 14px;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
 }
 
-p, li, a, label, input, textarea, button {
-    font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem);
-}
-
-/* Make hero text more responsive */
-.hero h2 {
-    font-size: clamp(1.5rem, 4vw + 1rem, 2.5rem);
-}
-
-/* Responsive padding adjustments */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
+    :root {
+        --base-font-size: 13px;
     }
     
-    .contact-section,
-    .map-section {
-        padding: 50px 0;
+    .logo h1 {
+        font-size: 1.2rem;
     }
     
-    .info-item {
-        padding: 12px;
-        margin-bottom: 15px;
+    .hero h2 {
+        font-size: 1.8rem;
     }
     
-    .info-item i {
-        font-size: 1.5rem;
-        margin-right: 10px;
+    .section-title {
+        font-size: 1.8rem;
     }
     
-    .form-group {
-        margin-bottom: 15px;
+    .info-item div h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --base-font-size: 12px;
     }
     
-    .form-group input,
-    .form-group textarea {
-        padding: 10px;
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.6rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .location-title {
+        font-size: 1.3rem;
     }
     
     .btn {
-        padding: 10px 20px;
+        padding: 10px 24px;
+        font-size: 0.9rem;
+    }
+    
+    .form-group input, 
+    .form-group textarea {
+        font-size: 0.9rem;
+        padding: 10px;
     }
 }
 
-/* Even smaller screens */
-@media (max-width: 480px) {
-    .hero-content {
-        padding: 30px 15px;
-    }
-    
-    .contact-container,
-    .maps-container {
-        gap: 20px;
-    }
-    
-    .footer-content {
-        gap: 25px;
-    }
-    
-    /* Reduce size of WhatsApp button on small screens */
-    .whatsapp-btn {
-        width: 50px;
-        height: 50px;
-        bottom: 15px;
-        right: 15px;
-    }
-    
-    .whatsapp-icon {
-        width: 28px;
-        height: 28px;
-    }
+/* Viewport-based responsive text approach */
+.responsive-text {
+    font-size: calc(1rem + var(--scale-ratio) * 1vw);
 }
 
-/* Fix for the navigation on very small screens */
-@media (max-width: 380px) {
-    .logo h1 {
-        font-size: clamp(1rem, 3vw, 1.2rem);
+/* Force text scaling even in desktop site mode on mobile */
+@media screen and (max-width: 992px) {
+    /* Adjust specific elements that need special attention */
+    .footer-section h3 {
+        font-size: 1.2rem;
     }
     
-    nav ul li {
-        margin: 0 0 10px 0;
+    .footer-links a,
+    .footer-section p {
+        font-size: 0.9rem;
     }
     
+    .location-address {
+        font-size: 0.8rem;
+    }
+    
+    /* This ensures text readability regardless of desktop mode */
+    .info-item div p,
+    .form-group label,
     nav ul li a {
         font-size: 0.9rem;
     }
 }
-
-/* Ensure proper viewport settings for mobile devices */
     </style>
 </head>
 <body>
@@ -827,6 +835,31 @@ p, li, a, label, input, textarea, button {
       alert("Oops! There was a problem submitting your form: " + error);
     });
   }
+
+  function handleViewportScaling() {
+        // Check if device is mobile but viewport width doesn't match
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        
+        if (isMobile && viewportWidth > 992) {
+            // User is likely viewing desktop site on mobile
+            document.body.classList.add('desktop-on-mobile');
+            
+            // Apply additional scaling to critical text elements
+            const scaleElements = document.querySelectorAll('.logo h1, .section-title, .hero h2, .info-item div h3');
+            scaleElements.forEach(el => {
+                // Get computed font size and reduce it
+                const computedSize = window.getComputedStyle(el).fontSize;
+                const currentSize = parseFloat(computedSize);
+                const newSize = currentSize * 0.85; // Scale down by 15%
+                el.style.fontSize = newSize + 'px';
+            });
+        }
+    }
+    
+    // Run on page load and resize
+    window.addEventListener('load', handleViewportScaling);
+    window.addEventListener('resize', handleViewportScaling);
     </script>
 </body>
 </html>
