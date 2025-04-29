@@ -477,6 +477,115 @@
     width: 35px;
     height: 35px;
   }
+
+  /* Responsive Typography */
+html {
+    /* Base font size */
+    font-size: 16px;
+}
+
+/* Fluid typography for headings and body text */
+h1, .logo h1 {
+    font-size: clamp(1.2rem, 2vw + 1rem, 1.5rem);
+}
+
+h2, .section-title {
+    font-size: clamp(1.5rem, 3vw + 1rem, 2.2rem);
+}
+
+h3, .location-title {
+    font-size: clamp(1.1rem, 1.5vw + 0.5rem, 1.5rem);
+}
+
+p, li, a, label, input, textarea, button {
+    font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem);
+}
+
+/* Make hero text more responsive */
+.hero h2 {
+    font-size: clamp(1.5rem, 4vw + 1rem, 2.5rem);
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .contact-section,
+    .map-section {
+        padding: 50px 0;
+    }
+    
+    .info-item {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .info-item i {
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+    }
+}
+
+/* Even smaller screens */
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 30px 15px;
+    }
+    
+    .contact-container,
+    .maps-container {
+        gap: 20px;
+    }
+    
+    .footer-content {
+        gap: 25px;
+    }
+    
+    /* Reduce size of WhatsApp button on small screens */
+    .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Fix for the navigation on very small screens */
+@media (max-width: 380px) {
+    .logo h1 {
+        font-size: clamp(1rem, 3vw, 1.2rem);
+    }
+    
+    nav ul li {
+        margin: 0 0 10px 0;
+    }
+    
+    nav ul li a {
+        font-size: 0.9rem;
+    }
+}
+
+/* Ensure proper viewport settings for mobile devices */
     </style>
 </head>
 <body>
